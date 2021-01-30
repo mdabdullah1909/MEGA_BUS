@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+
+        <div class="booking-content">
+            <h1>Mega City Bus</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book.</p>
+        </div>
+
+
+        <div class="booking-form">
+            <h3>Explore By Bus</h3>
+
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">From</label>
+                        <input class="inp-style" type="text" name="" placeholder="Dhaka">
+                </div>
+                <div class="input-group">
+                    <label" for="">From</label>
+                        <input class="inp-style" type="text" name="" placeholder="Chittagone">
+                </div>
+            </div>
+
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                        <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="inputs">
+                <div class="input-group f-class">
+                    <div>
+                        <label for="">First Class <span id="total-amount">($150)</span></label>
+                        <input id="ticket-count" class="inp-style inp-width" type="text" value="1">
+                    </div>
+                    <div class="plus-minus-btn">
+                        <button class="btn-sign" onclick="fistTicketHandler(true)">+</button>
+                        <button class="btn-sign" onclick="fistTicketHandler(false)">-</button>
+                    </div>
+                </div>
+                <div class="input-group f-class">
+                    <div>
+                        <label for="">Economy <span id="e-total-amount">($100)</span></label>
+                        <input id="e-ticket-count" class="inp-style inp-width" type="text" value="1">
+                    </div>
+                    <div class="plus-minus-btn">
+                        <button class="btn-sign" onclick="ticketHandler(true)">+</button>
+                        <button class="btn-sign" onclick="ticketHandler(false)">-</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p id="totalAmount">$250</p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p  id="totalVat">$25</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p id="totlaPayment">$275</p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-style">Book Now</button>
+        </div>
+    </main>
+
+    <script>
+        // First Class Ticket Count 
+        function fistTicketHandler(isIncrease) {
+            const inputFastTicket = document.getElementById("ticket-count");
+            const ticketFastCount = parseInt(inputFastTicket.value);
+            if (isIncrease == true) {
+                ticketNewCount = ticketFastCount + 1;
+            }
+            if (isIncrease == false && ticketFastCount > 0) {
+                ticketNewCount = ticketFastCount - 1;
+            }
+            inputFastTicket.value = ticketNewCount;
+            const totalFastCount = ticketNewCount * 150;
+            document.getElementById("total-amount").innerText = "( " + "$" + totalFastCount + " )";
+            ticketCalculator()
+        };
+
+        // Economy Ticket Count
+        function ticketHandler(isIncrease) {
+            const inputTicket = document.getElementById("e-ticket-count");
+            const ticketCount = parseInt(inputTicket.value);
+            if (isIncrease == true) {
+                ticketNewCount = ticketCount + 1;
+            }
+            if (isIncrease == false && ticketCount > 0) {
+                ticketNewCount = ticketCount - 1;
+            }
+            inputTicket.value = ticketNewCount;
+            const totalCount = ticketNewCount * 100;
+            document.getElementById("e-total-amount").innerText = "( " + "$" + totalCount + " )";
+            ticketCalculator();
+        };
+
+        // Ticket Calculator
+        function ticketCalculator(){
+            const inputFastTicket = document.getElementById("ticket-count");
+            const ticketFastCount = parseInt(inputFastTicket.value);
+
+            const inputTicket = document.getElementById("e-ticket-count");
+            const ticketCount = parseInt(inputTicket.value);
+
+            const totalAmount = ticketFastCount * 150 + ticketCount * 100;
+            document.getElementById("totalAmount").innerText ="$" + totalAmount;
+
+            const totalVat = totalAmount * 0.1;
+            document.getElementById("totalVat").innerText ="$" + totalVat;
+
+            const totalPay = totalVat;
+            document.getElementById("totlaPayment").innerText ="$" + (totalAmount + totalPay);
+        }
+    </script>
+
+    <!--Thank You-->
+</body>
+
+</html>
